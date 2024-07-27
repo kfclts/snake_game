@@ -16,6 +16,7 @@ starting_postion = [(0,0), (-20, 0), (-40, 0)]
 for postion in starting_postion:
     segment = Turtle(shape="square")
     segment.color("white")
+    segment.penup()     # without draw, will not have a white line
     segment.goto(postion)
     segments.append(segment)
 
@@ -33,14 +34,21 @@ screen.update() # update the screen
 # segment_3.color("white")
 # segment_3.goto(-40, 0)
 
-game_is_on = True
-while game_is_on:
+# game_is_on = True
+# while game_is_on:
+k = 10
+while k > 0:
     screen.update()
     time.sleep(0.2)
-    for seg in segments:
-        seg.forward(20)
-
-
+    # for seg in segments:
+    #     seg.forward(20)
+    ## revise the order,
+    for seg_num in range(len(segments) - 1, 0, -1):  # start = 2, stop = 0, setp = -1 => 2, 1, 0 
+        new_x = segments[seg_num - 1].xcor()
+        new_y = segments[seg_num - 1].ycor()  
+        segments[seg_num].goto(new_x, new_y)  # 3rd pixel move to 2nd pixel, 2nd pixel move to 1st pixel
+    segments[0].forward(20)
+    k -=1
 
 
 screen.exitonclick()
