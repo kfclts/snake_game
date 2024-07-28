@@ -12,7 +12,7 @@ class Food(Turtle):
         self.refresh()
         
     def refresh(self):
-        min_val, max_val = -280, 280
+        min_val, max_val = -260, 260
         step = 20
 
         min_index = min_val // step
